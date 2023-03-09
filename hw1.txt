@@ -1,0 +1,23 @@
+import numpy as np
+binary_to_hex = {"0000": "0", "0001": "1", "0010": "2", "0011": "3", "0100": "4",
+                 "0101": "5", "0110": "6", "0111": "7", "1000": "8", "1001": "9",
+                 "1010": "A", "1011": "B", "1100": "C", "1101": "D", "1110": "E",
+                 "1111": "F"}   #先建一個二進位轉十六進位的字典
+arr = np.array([0, 0, 0, 0, 0, 0, 0, 0])
+print("Please enter a decimal number:")
+n = int(input())
+i = 0
+temp1 = temp2 = ""#用來裝等等要查字典的數值
+while n > 0:
+    arr[i] = n % 2
+    n //= 2
+    i += 1
+arr = arr[::-1]#原本的數列是反的 將他轉成正的
+print("decimal to binary is:")
+for j in range(0, 8, 1):
+    print(arr[j], end="")#在印出二進位時順便把值送到temp裡
+    if j < 4:
+        temp1 += str(arr[j])
+    else:
+        temp2 += str(arr[j])
+print("\ndecimal to hexadecimal is\n", binary_to_hex[temp1]+binary_to_hex[temp2])
